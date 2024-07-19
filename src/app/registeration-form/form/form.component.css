@@ -1,0 +1,8 @@
+.drop {
+    position: relative;
+}
+
+.required-field::before {
+    content: "*";
+    color: red;
+}

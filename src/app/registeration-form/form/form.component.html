@@ -1,0 +1,140 @@
+<div class="container col-5">
+    <h2 class="text-center">Registeration Form</h2>
+    <p class="text-danger">*(asterick) These field are mandatory</p>
+    <form [formGroup]="userDeatil" (submit)="onSubmit()">
+        <!-- <div class="form-group">
+            <label for="exampleInputEmail1">Id</label>
+            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter Id" formControlName="UserId" />
+        </div>
+        <div *ngIf="userDeatil.controls.UserId.errors && (userDeatil.controls.UserId.dirty || userDeatil.controls.UserId.touched)"
+            class="alert alert-danger">
+            <div *ngIf="userDeatil.controls.UserId.errors?.['required']">Id is required.</div>
+    
+        </div> -->
+        <div class="form-group">
+            <label for="inp1">First Name<span class="required-field"></span></label>
+            <input type="text" class="form-control" onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 61 && event.charCode <= 122" tabindex="1" id="inp1" maxlength="10" placeholder="Enter first Name"
+                formControlName="FirstName" autofocus />
+        </div>
+        <div *ngIf="userDeatil.controls.FirstName.invalid && (userDeatil.controls.FirstName.dirty || userDeatil.controls.FirstName.touched)"
+            class="alert alert-danger">
+            <div *ngIf="userDeatil.controls.FirstName.errors?.['required']">Name is required.</div>
+            <div *ngIf="userDeatil.controls.FirstName.errors?.['minlength']">
+                Name must be at least 3 charcter
+            </div>
+            <div *ngIf="userDeatil.controls.FirstName.errors?.['maxlength']">
+                Name must be under 10 character
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inp2">Last Name<span class="required-field"></span></label>
+            <input type="text" class="form-control" tabindex="2" id="inp2" placeholder="Enter last Name"
+                formControlName="LastName" />
+        </div>
+        <div *ngIf="userDeatil.controls.LastName.invalid && (userDeatil.controls.LastName.dirty || userDeatil.controls.LastName.touched)"
+            class="alert alert-danger">
+            <div *ngIf="userDeatil.controls.LastName.errors?.['required']">Name is required.</div>
+            <div *ngIf="userDeatil.controls.LastName.errors?.['minlength']">
+                Name must be at least 3 charcter
+            </div>
+            <div *ngIf="userDeatil.controls.LastName.errors?.['maxlength']">
+                Name must be under 10 character
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inp3">Email<span class="required-field"></span></label>
+            <input type="text" tabindex="3" class="form-control" id="inp3" placeholder="Enter Email"
+                formControlName="Email" />
+        </div>
+        <div *ngIf="userDeatil.controls.Email.invalid && (userDeatil.controls.Email.dirty || userDeatil.controls.Email.touched)"
+            class="alert alert-danger">
+            <div *ngIf="userDeatil.controls.Email.errors?.['required']">Email is required.</div>
+            <div *ngIf="userDeatil.controls.Email.errors?.['email']">
+                Email is not valid
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="checkbox" tabindex="4" name="checking" value="SDirect" formControlName="IsSDirect">
+            <label for="vehicle1" class="ml-2">Are you SDirect?</label><br>
+        </div>
+
+        <div class="form-group">
+            <label for="inp4">Passsword<span class="required-field"></span></label>
+            <input type="password" tabindex="5" class="form-control" id="inp4" placeholder="Enter Password"
+                formControlName="Password" />
+        </div>
+        <div *ngIf="userDeatil.controls.Password.invalid && (userDeatil.controls.Password.dirty || userDeatil.controls.Password.touched)"
+            class="alert alert-danger">
+            <div *ngIf="userDeatil.controls.Password.errors?.['required']">Password is required.</div>
+        </div>
+
+        <p>Select Gender :<span class="required-field"></span></p>
+        <label for="htm">Male</label>
+        <input type="radio" id="htm" tabindex="6" name="Gender" value="Male" formControlName="Gender">
+        <label for="html" class="ml-3">Female</label>
+        <input type="radio" id="html" tabindex="7" name="Gender" value="Female" formControlName="Gender">
+        <label for="css" class="ml-3">Others</label>
+        <input type="radio" tabindex="8" id="css" name="Gender" value="Others" formControlName="Gender">
+        <div *ngIf="userDeatil.controls.Gender.invalid && (userDeatil.controls.Gender.dirty || userDeatil.controls.Gender.touched)"
+            class="alert alert-danger">
+            <div *ngIf="userDeatil.controls.Gender.errors?.['required']">Gender is required.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="inp5">DOB<span class="required-field"></span></label>
+            <input type="date" tabindex="9" (keydown)="disableDate()" id="inp5" class="form-control" max="{{dateNow}}" id="exampleInputPassword1"
+                placeholder="Enter Dob" formControlName="DOB" />
+        </div>
+        <div *ngIf="userDeatil.controls.DOB.invalid && (userDeatil.controls.DOB.dirty || userDeatil.controls.DOB.touched)"
+            class="alert alert-danger">
+            <div *ngIf="userDeatil.controls.DOB.errors?.['required']">DOB is required.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="inp6">Phone Number<span class="required-field"></span></label>
+            <input type="tel" inputmode="numeric" maxlength="10" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                tabindex="10" class="form-control" id="inp6" placeholder="Enter phone Number"
+                formControlName="PhoneNumber" />
+        </div>
+        <div *ngIf="userDeatil.controls.PhoneNumber.invalid && (userDeatil.controls.PhoneNumber.dirty || userDeatil.controls.PhoneNumber.touched)"
+            class="alert alert-danger">
+            <div *ngIf="userDeatil.controls.PhoneNumber.errors?.['required']">Phone Number is required.</div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                <label for="inp7">Description<span class="required-field"></span></label>
+            </div>
+            <textarea tabindex="11" maxlength="100" placeholder="Enter Description" id="inp7" class="form-control"
+                formControlName="Description" name="w3review" rows="4" cols="50"></textarea>
+        </div>
+        <div *ngIf="userDeatil.controls.Description.invalid && (userDeatil.controls.Description.dirty || userDeatil.controls.Description.touched)"
+            class="alert alert-danger">
+            <div *ngIf="userDeatil.controls.Description.errors?.['required']">Description is required.</div>
+        </div>
+
+        <div class="form-group drop">
+            <label for="cars">choose Branch<span class="required-field"></span></label>
+            <select tabindex="12" class="form-control" name="cars" id="cars" formControlName="Major">
+                <option value="" disabled selected>Select your Branch</option>
+                <option value="0">CSE</option>
+                <option value="1">Mechanical</option>
+                <option value="2">Civil</option>
+            </select>
+        </div>
+        <div *ngIf="userDeatil.controls.Major.invalid && (userDeatil.controls.Major.dirty || userDeatil.controls.Major.touched)"
+            class="alert alert-danger">
+            <div *ngIf="userDeatil.controls.Major.errors?.['required']">Branch is required.</div>
+        </div>
+
+        <div class="form-group">
+            <input type="file" id="fileControl" size="1" tabindex="13" accept=".pdf,.png" (change)="HandleChange($event)" name="file"/>
+        </div>
+        <p class="text-danger">{{fileError}}</p>
+        <button type="submit" [disabled]="!userDeatil.valid" class="btn btn-primary">Submit</button>
+    </form>
+</div>
